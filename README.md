@@ -2,34 +2,60 @@
 <img width="32px" src="img/algo2.svg">
 </div>
 
-# TDA LISTA/PILA/COLA
+# TP1 LECTURA DE ARCHIVOS
 
-## Repositorio de (Nombre Apellido) - (Padrón) - (Mail)
+## Alumno: Puchetta Federico - 112853 - fpuchetta@fi.uba.ar
 
-- Para compilar:
+- Para compilar junto a main:
 
 ```bash
-línea de compilación
+make tdas
+```
+
+- Para compilar junto a pruebas de usuario:
+
+```bash
+make pruebas
 ```
 
 - Para ejecutar:
 
 ```bash
-línea de ejecución
+./tdas <archivo> <comandos> <modo> <argumento>
 ```
 
-- Para ejecutar con valgrind:
+- Para limpiar archivos:
+
 ```bash
-línea con valgrind
+make clean
 ```
+
+- Para aplicar format:
+
+```bash
+make format
+```
+
 ---
-##  Funcionamiento
+##  Eleccion de estructuras:
 
-Explicación de cómo funcionan las estructuras desarrolladas en el TP y el funcionamiento general del mismo.
+Para la implementacion del TDA lista, opte por crear el tda `nodo_t` el cual es el que contendra el dato y la conexion con el siguiente nodo, logrando asi formar la conexion entre datos.
 
-Aclarar en esta parte todas las decisiones que se tomaron al realizar el TP, cosas que no se aclaren en el enunciado, fragmentos de código que necesiten explicación extra, etc.
+Luego, en `lista_t` opte por utilizar dos punteros, uno que apunta al primer nodo (principio), y otro que apunta al ultimo (final), los cuales sirven para cumplir con las complejidades pedidas en el enunciado (pila y cola). Luego, el campo `cantidad` sirve para mantener un recuento de elementos insertados en la lista y facilitar la implementacion de algunas funciones
 
-Incluir **EN TODOS LOS TPS** los diagramas relevantes al problema (mayormente diagramas de memoria para explicar las estructuras, pero se pueden utilizar otros diagramas si es necesario).
+Luego, para lograr una mejor modularizacion de las funciones a desarrollar, opte por crear el struct `comparador_ctx_t`, el cual me permite reutilizar la funcion `lista_con_cada_elemento` para realizar la busqueda por criterio de usuario, ya que permite encapsular una funcion de comparacion, un flag de encontrado y el elemento a comparar para enviarlo como **extra** a la funcion usada.
+
+El iterador `lista_iterador_t` simplemente cuenta con un puntero a nodo_t el cual representa el nodo actual de la iteracion.
+
+Por ultimo,
+
+Una vez dispuesto en memoria, el tda lista_t se veria asi:
+
+<div align="center">
+<img src="img/lista_memoria.svg">
+</div>
+
+
 
 ### Por ejemplo:
 

@@ -14,7 +14,7 @@
 #define FACTOR_AUMENTO_TAMANIO 2
 #define CAPACIDAD_MINIMA 10
 
-#define CANTIDAD_COMANDOS 5
+#define CANTIDAD_COMANDOS 1
 
 typedef struct {
 	struct pokemon **v;
