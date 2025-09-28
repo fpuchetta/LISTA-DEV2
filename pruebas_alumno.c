@@ -47,7 +47,7 @@ void lista_crear_crea_lista_vacia()
 	lista_t *l = lista_crear();
 	pa2m_afirmar(l != NULL, "lista_crear crea lista correctamente");
 	pa2m_afirmar(lista_cantidad(l) == 0,
-		     "lista_crear crea lista vacía (cantidad 0)");
+		     "lista_crear crea lista vacia (cantidad 0)");
 	lista_destruir(l);
 }
 
@@ -61,7 +61,7 @@ void lista_vacia_nueva_es_verdadera()
 {
 	lista_t *l = lista_crear();
 	pa2m_afirmar(lista_vacia(l),
-		     "lista_vacia sobre lista recién creada es verdadera");
+		     "lista_vacia sobre lista recien creada es verdadera");
 	lista_destruir(l);
 }
 
@@ -83,7 +83,7 @@ void lista_vacia_luego_de_eliminar_ultimo_es_verdadera()
 	(void)lista_eliminar_elemento(l, 0);
 	pa2m_afirmar(
 		lista_vacia(l),
-		"lista_vacia vuelve a true tras eliminar el último elemento");
+		"lista_vacia vuelve a true tras eliminar el ultimo elemento");
 	lista_destruir(l);
 }
 
@@ -159,11 +159,11 @@ void lista_agregar_multiples_mantiene_orden()
 	pa2m_afirmar(lista_cantidad(l) == 3,
 		     "lista_agregar suma cantidad correctamente (3)");
 	pa2m_afirmar(lista_buscar_elemento(l, 0) == &v1,
-		     "posición 0 es el primero agregado");
+		     "posicion 0 es el primero agregado");
 	pa2m_afirmar(lista_buscar_elemento(l, 1) == &v2,
-		     "posición 1 es el segundo");
+		     "posicion 1 es el segundo");
 	pa2m_afirmar(lista_buscar_elemento(l, 2) == &v3,
-		     "posición 2 es el tercero");
+		     "posicion 2 es el tercero");
 	lista_destruir(l);
 }
 
@@ -190,7 +190,7 @@ void lista_insertar_no_permite_primer_elemento_en_lista_vacia()
 	int v = 9;
 	pa2m_afirmar(
 		!lista_insertar(l, &v, 0),
-		"lista_insertar NO permite insertar el PRIMER elemento (lista vacía, pos 0)");
+		"lista_insertar NO permite insertar el PRIMER elemento (lista vacia, pos 0)");
 	pa2m_afirmar(lista_cantidad(l) == 0, "cantidad sigue en 0 tras fallo");
 	lista_destruir(l);
 }
@@ -199,14 +199,14 @@ void lista_insertar_en_cabeza_con_lista_no_vacia()
 {
 	lista_t *l = lista_crear();
 	int v1 = 10, v2 = 20;
-	lista_agregar(l, &v1); // lista no vacía
+	lista_agregar(l, &v1); // lista no vacia
 	pa2m_afirmar(lista_insertar(l, &v2, 0),
-		     "lista_insertar en pos 0 con lista NO vacía funciona");
+		     "lista_insertar en pos 0 con lista NO vacia funciona");
 	pa2m_afirmar(lista_cantidad(l) == 2, "cantidad es 2");
 	pa2m_afirmar(lista_buscar_elemento(l, 0) == &v2,
 		     "nuevo primero es el insertado");
 	pa2m_afirmar(lista_buscar_elemento(l, 1) == &v1,
-		     "el anterior primero quedó en pos 1");
+		     "el anterior primero quedo en pos 1");
 	lista_destruir(l);
 }
 
@@ -217,7 +217,7 @@ void lista_insertar_en_medio()
 	lista_agregar(l, &v1);
 	lista_agregar(l, &v3);
 	pa2m_afirmar(lista_insertar(l, &v2, 1),
-		     "insertar en posición media (1) funciona");
+		     "insertar en posicion media (1) funciona");
 	pa2m_afirmar(lista_buscar_elemento(l, 0) == &v1, "pos 0 = v1");
 	pa2m_afirmar(lista_buscar_elemento(l, 1) == &v2, "pos 1 = v2");
 	pa2m_afirmar(lista_buscar_elemento(l, 2) == &v3, "pos 2 = v3");
@@ -233,7 +233,7 @@ void lista_insertar_al_final_equivale_agregar()
 		lista_insertar(l, &v2, lista_cantidad(l)),
 		"insertar en pos == cantidad delega en agregar (agrega al final)");
 	pa2m_afirmar(lista_buscar_elemento(l, 1) == &v2,
-		     "nuevo último es el insertado");
+		     "nuevo ultimo es el insertado");
 	lista_destruir(l);
 }
 
@@ -306,7 +306,7 @@ void lista_eliminar_elemento_en_ultimo()
 	lista_agregar(l, &v2);
 
 	void *e = lista_eliminar_elemento(l, 1);
-	pa2m_afirmar(e == &v2, "eliminar último devuelve el último");
+	pa2m_afirmar(e == &v2, "eliminar ultimo devuelve el ultimo");
 	pa2m_afirmar(lista_cantidad(l) == 1, "cantidad decrece");
 	pa2m_afirmar(lista_buscar_elemento(l, 0) == &v1,
 		     "queda solo el primero");
@@ -315,7 +315,7 @@ void lista_eliminar_elemento_en_ultimo()
 	pa2m_afirmar(lista_agregar(l, &v3),
 		     "se puede agregar nuevamente al final");
 	pa2m_afirmar(lista_buscar_elemento(l, 1) == &v3,
-		     "nuevo último es el recién agregado");
+		     "nuevo ultimo es el recien agregado");
 	lista_destruir(l);
 }
 
@@ -323,7 +323,7 @@ void lista_eliminar_elemento_en_lista_vacia_devuelve_null()
 {
 	lista_t *l = lista_crear();
 	pa2m_afirmar(lista_eliminar_elemento(l, 0) == NULL,
-		     "lista_eliminar_elemento en lista vacía devuelve NULL");
+		     "lista_eliminar_elemento en lista vacia devuelve NULL");
 	lista_destruir(l);
 }
 
@@ -397,7 +397,7 @@ void lista_buscar_posicion_lista_vacia_devuelve_menos_uno()
 	int clave = 5;
 	int pos = lista_buscar_posicion(l, &clave, cmp_int_ptr);
 	pa2m_afirmar(pos == -1,
-		     "lista_buscar_posicion en lista vacía devuelve -1");
+		     "lista_buscar_posicion en lista vacia devuelve -1");
 	lista_destruir(l);
 }
 
@@ -467,7 +467,7 @@ void lista_buscar_elemento_lista_vacia_devuelve_null()
 {
 	lista_t *l = lista_crear();
 	pa2m_afirmar(lista_buscar_elemento(l, 0) == NULL,
-		     "lista_buscar_elemento en lista vacía devuelve NULL");
+		     "lista_buscar_elemento en lista vacia devuelve NULL");
 	lista_destruir(l);
 }
 
@@ -524,7 +524,7 @@ void lista_con_cada_elemento_corta_en_objetivo()
 		     "con_cada_elemento corta al encontrar el objetivo");
 	pa2m_afirmar(
 		visitas == 3 && ctx.visitas == 3,
-		"cantidad de visitas coincide con el índice del encontrado + 1 (3)");
+		"cantidad de visitas coincide con el indice del encontrado + 1 (3)");
 	lista_destruir(l);
 }
 
@@ -534,7 +534,7 @@ void lista_con_cada_elemento_lista_vacia_visitas_cero()
 	struct ctx_contar ctx = { 0 };
 	size_t visitas = lista_con_cada_elemento(l, visitar_contar_todos, &ctx);
 	pa2m_afirmar(visitas == 0 && ctx.visitas == 0,
-		     "con_cada_elemento en lista vacía visita 0 elementos");
+		     "con_cada_elemento en lista vacia visita 0 elementos");
 	lista_destruir(l);
 }
 
@@ -587,7 +587,7 @@ void lista_destruir_todo_con_elementos_null_y_free_funciona_correctamente()
 {
 	lista_t *l = lista_crear();
 
-	/* mezclar NULL y punteros válidos: free(NULL) es seguro */
+	/* mezclar NULL y punteros validos: free(NULL) es seguro */
 	int *p = malloc(sizeof(int));
 	if (p)
 		*p = 7;
@@ -608,7 +608,7 @@ void lista_destruir_todo_en_lista_vacia_funciona_correctamente()
 	lista_destruir_todo(l, free);
 	pa2m_afirmar(
 		true,
-		"lista_destruir_todo sobre lista vacía funciona correctamente");
+		"lista_destruir_todo sobre lista vacia funciona correctamente");
 }
 
 void lista_destruir_todo_lista_nula_devuelve_null()
@@ -646,7 +646,7 @@ void lista_destruir_lista_vacia()
 	lista_t *l = lista_crear();
 	lista_destruir(l);
 	pa2m_afirmar(true,
-		     "lista_destruir destruye una lista vacía sin errores");
+		     "lista_destruir destruye una lista vacia sin errores");
 }
 
 void lista_destruir_lista_con_elementos()
@@ -718,7 +718,7 @@ void probar_iterador_externo_con_parametros_invalidos()
 	lista_iterador_siguiente(it_null);
 	pa2m_afirmar(
 		true,
-		"iterador NULL no ocasiona comportamiento indeterminado al avanzar iteración");
+		"iterador NULL no ocasiona comportamiento indeterminado al avanzar iteracion");
 	lista_iterador_destruir(NULL);
 	pa2m_afirmar(
 		true,
@@ -777,9 +777,9 @@ void cola_encolar_un_elemento()
 	int valor = 42;
 
 	pa2m_afirmar(cola_encolar(c, &valor),
-		     "Puedo encolar un elemento en una cola vacía");
+		     "Puedo encolar un elemento en una cola vacia");
 	pa2m_afirmar(cola_cantidad(c) == 1,
-		     "La cantidad es 1 después de encolar un elemento");
+		     "La cantidad es 1 despues de encolar un elemento");
 	pa2m_afirmar(cola_ver_primero(c) == &valor,
 		     "El primero de la cola es el elemento encolado");
 
@@ -797,7 +797,7 @@ void cola_encolar_encola_muchos_elementos()
 
 	pa2m_afirmar(
 		cola_cantidad(c) == 3,
-		"La cantidad es correcta después de encolar varios elementos");
+		"La cantidad es correcta despues de encolar varios elementos");
 
 	cola_destruir(c);
 }
@@ -837,11 +837,11 @@ void cola_encolar_preserva_orden()
 
 	cola_desencolar(c);
 	pa2m_afirmar(cola_ver_primero(c) == &v2,
-		     "El primero cambia al segundo después de desencolar");
+		     "El primero cambia al segundo despues de desencolar");
 
 	cola_desencolar(c);
 	pa2m_afirmar(cola_ver_primero(c) == &v3,
-		     "El primero cambia al tercero después de desencolar");
+		     "El primero cambia al tercero despues de desencolar");
 
 	cola_destruir(c);
 }
@@ -892,7 +892,7 @@ void cola_desencolar_desencola_un_elemento()
 
 	pa2m_afirmar(
 		cola_cantidad(c) == 0,
-		"La cola queda vacía después de desencolar el único elemento");
+		"La cola queda vacia despues de desencolar el unico elemento");
 
 	cola_destruir(c);
 }
@@ -921,7 +921,7 @@ void cola_desencolar_desencola_muchos_elementos()
 
 	pa2m_afirmar(
 		cola_cantidad(c) == 0,
-		"La cola queda vacía después de desencolar todos los elementos");
+		"La cola queda vacia despues de desencolar todos los elementos");
 
 	cola_destruir(c);
 }
@@ -931,7 +931,7 @@ void cola_desencolar_desencola_cola_vacia()
 	cola_t *c = cola_crear();
 
 	pa2m_afirmar(cola_desencolar(c) == NULL,
-		     "cola_desencolar en cola vacía devuelve NULL");
+		     "cola_desencolar en cola vacia devuelve NULL");
 
 	cola_destruir(c);
 }
@@ -958,7 +958,7 @@ void cola_ver_primero_cola_vacia_devuelve_null()
 	cola_t *c = cola_crear();
 
 	pa2m_afirmar(cola_ver_primero(c) == NULL,
-		     "cola_ver_primero en cola vacía devuelve NULL");
+		     "cola_ver_primero en cola vacia devuelve NULL");
 
 	cola_destruir(c);
 }
@@ -982,7 +982,7 @@ void cola_ver_primero_funciona_al_sacar_elementos()
 	cola_desencolar(c);
 	pa2m_afirmar(
 		cola_ver_primero(c) == &v3,
-		"cola_ver_primero ve el último elemento cuando queda uno solo");
+		"cola_ver_primero ve el ultimo elemento cuando queda uno solo");
 
 	cola_destruir(c);
 }
@@ -1028,7 +1028,7 @@ void cola_cantidad_cola_vacia_devuelve_cero()
 	cola_t *c = cola_crear();
 
 	pa2m_afirmar(cola_cantidad(c) == 0,
-		     "cola_cantidad en cola vacía devuelve 0");
+		     "cola_cantidad en cola vacia devuelve 0");
 
 	cola_destruir(c);
 }
@@ -1057,16 +1057,16 @@ void cola_cantidad_cuenta_bien_al_sacar_elementos()
 	cola_encolar(c, &v2);
 
 	pa2m_afirmar(cola_cantidad(c) == 2,
-		     "cola_cantidad devuelve 2 después de encolar 2 elementos");
+		     "cola_cantidad devuelve 2 despues de encolar 2 elementos");
 
 	cola_desencolar(c);
 	pa2m_afirmar(
 		cola_cantidad(c) == 1,
-		"cola_cantidad devuelve 1 después de desencolar un elemento");
+		"cola_cantidad devuelve 1 despues de desencolar un elemento");
 
 	cola_desencolar(c);
 	pa2m_afirmar(cola_cantidad(c) == 0,
-		     "cola_cantidad devuelve 0 cuando la cola queda vacía");
+		     "cola_cantidad devuelve 0 cuando la cola queda vacia");
 
 	cola_destruir(c);
 }
@@ -1094,7 +1094,7 @@ void cola_destruir_cola_vacia()
 
 	cola_destruir(c);
 
-	pa2m_afirmar(true, "cola_destruir destruye una cola vacía sin errores");
+	pa2m_afirmar(true, "cola_destruir destruye una cola vacia sin errores");
 }
 
 void cola_destruir_cola_con_elementos()
@@ -1149,7 +1149,7 @@ void pila_crear_crea_pila_vacia()
 	pila_t *p = pila_crear();
 
 	pa2m_afirmar(p != NULL, "pila_crear crea una pila correctamente");
-	pa2m_afirmar(pila_cantidad(p) == 0, "pila_crear crea una pila vacía");
+	pa2m_afirmar(pila_cantidad(p) == 0, "pila_crear crea una pila vacia");
 
 	pila_destruir(p);
 }
@@ -1170,7 +1170,7 @@ void pila_apilar_un_elemento()
 	pa2m_afirmar(pila_cantidad(p) == 1,
 		     "La pila tiene 1 elemento tras apilar");
 	pa2m_afirmar(pila_ver_primero(p) == &valor,
-		     "pila_ver_primero devuelve el último elemento apilado");
+		     "pila_ver_primero devuelve el ultimo elemento apilado");
 
 	pila_destruir(p);
 }
@@ -1191,7 +1191,7 @@ void pila_apilar_muchos_elementos()
 		pila_cantidad(p) == 3,
 		"pila_apilar aumenta la cantidad correctamente con muchos elementos");
 	pa2m_afirmar(pila_ver_primero(p) == &v3,
-		     "pila_ver_primero devuelve el último apilado (LIFO)");
+		     "pila_ver_primero devuelve el ultimo apilado (LIFO)");
 
 	pila_destruir(p);
 }
@@ -1236,7 +1236,7 @@ void pila_desapilar_un_elemento()
 	pa2m_afirmar(desapilado == &valor,
 		     "pila_desapilar devuelve el mismo puntero apilado");
 	pa2m_afirmar(pila_cantidad(p) == 0,
-		     "La pila queda vacía tras desapilar el único elemento");
+		     "La pila queda vacia tras desapilar el unico elemento");
 
 	pila_destruir(p);
 }
@@ -1251,13 +1251,13 @@ void pila_desapilar_muchos_elementos()
 	pila_apilar(p, &v3);
 
 	pa2m_afirmar(pila_desapilar(p) == &v3,
-		     "pila_desapilar devuelve el último apilado (LIFO)");
+		     "pila_desapilar devuelve el ultimo apilado (LIFO)");
 	pa2m_afirmar(pila_desapilar(p) == &v2,
-		     "pila_desapilar devuelve el segundo último apilado");
+		     "pila_desapilar devuelve el segundo ultimo apilado");
 	pa2m_afirmar(pila_desapilar(p) == &v1,
 		     "pila_desapilar devuelve el primero apilado");
 	pa2m_afirmar(pila_cantidad(p) == 0,
-		     "La pila queda vacía después de desapilar todo");
+		     "La pila queda vacia despues de desapilar todo");
 
 	pila_destruir(p);
 }
@@ -1267,7 +1267,7 @@ void pila_desapilar_pila_vacia()
 	pila_t *p = pila_crear();
 
 	pa2m_afirmar(pila_desapilar(p) == NULL,
-		     "pila_desapilar en pila vacía devuelve NULL");
+		     "pila_desapilar en pila vacia devuelve NULL");
 
 	pila_destruir(p);
 }
@@ -1298,7 +1298,7 @@ void pila_ver_primero_funciona_correctamente()
 	pila_apilar(p, &v2);
 
 	pa2m_afirmar(pila_ver_primero(p) == &v2,
-		     "pila_ver_primero devuelve el último elemento apilado");
+		     "pila_ver_primero devuelve el ultimo elemento apilado");
 	pa2m_afirmar(pila_cantidad(p) == 2,
 		     "pila_ver_primero no altera la cantidad");
 
@@ -1310,7 +1310,7 @@ void pila_ver_primero_pila_vacia()
 	pila_t *p = pila_crear();
 
 	pa2m_afirmar(pila_ver_primero(p) == NULL,
-		     "pila_ver_primero en pila vacía devuelve NULL");
+		     "pila_ver_primero en pila vacia devuelve NULL");
 
 	pila_destruir(p);
 }
@@ -1336,7 +1336,7 @@ void pila_cantidad_pila_vacia_devuelve_cero()
 	pila_t *p = pila_crear();
 
 	pa2m_afirmar(pila_cantidad(p) == 0,
-		     "pila_cantidad en pila vacía devuelve 0");
+		     "pila_cantidad en pila vacia devuelve 0");
 
 	pila_destruir(p);
 }
@@ -1368,7 +1368,7 @@ void pila_cantidad_cambia_al_desapilar()
 	pila_desapilar(p);
 	pa2m_afirmar(
 		pila_cantidad(p) == 0,
-		"pila_cantidad devuelve 0 tras desapilar el único elemento");
+		"pila_cantidad devuelve 0 tras desapilar el unico elemento");
 
 	pila_destruir(p);
 }
@@ -1395,7 +1395,7 @@ void pila_destruir_pila_vacia()
 	pila_t *p = pila_crear();
 	pila_destruir(p);
 
-	pa2m_afirmar(true, "pila_destruir destruye una pila vacía sin errores");
+	pa2m_afirmar(true, "pila_destruir destruye una pila vacia sin errores");
 }
 
 void pila_destruir_pila_con_elementos()

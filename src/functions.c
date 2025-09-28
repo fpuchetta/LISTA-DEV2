@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 /*
-  Pre: pa y pb no pueden ser NULL. *pa y *pb deben ser punteros válidos a struct pokemon.
+  Pre: pa y pb no pueden ser NULL. *pa y *pb deben ser punteros validos a struct pokemon.
   Post:Devuelve  > 0  si a->id  > b->id
        Devuelve  = 0  si a->id == b->id
        Devuelve  < 0  si a->id  < b->id

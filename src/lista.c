@@ -1,6 +1,8 @@
 #include "lista.h"
 #include <stdio.h>
 
+#define POSICION_NO_ENCONTRADA -1
+
 typedef struct nodo {
 	void *elemento;
 	struct nodo *siguiente;
@@ -208,7 +210,7 @@ int lista_buscar_posicion(lista_t *lista, void *elemento,
 			  int (*comparador)(const void *, const void *))
 {
 	if (!lista || !comparador)
-		return -1;
+		return -POSICION_NO_ENCONTRADA;
 
 	comparador_ctx_t ctx = { .comparador = comparador,
 				 .elemento_a_comparar = elemento,
@@ -218,7 +220,7 @@ int lista_buscar_posicion(lista_t *lista, void *elemento,
 		lista, recorrer_entero_cmp_ctx, &ctx);
 
 	if (!ctx.encontrado) {
-		return -1;
+		return POSICION_NO_ENCONTRADA;
 	}
 
 	return iterados - 1;
